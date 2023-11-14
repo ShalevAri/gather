@@ -7,49 +7,48 @@
 // 6. Create "host a gathering" form
 // 7. Implement users (model, link with gatherings, etc...)
 
-import * as Gatherings from "./gathering.model.js";
-import * as GatheringListView from "./gatheringList.view.js";
+import * as Gatherings from "./gathering.model.js"
+import * as GatheringListView from "./gatheringList.view.js"
 
 const typescriptMeetupId = Gatherings.createGathering({
-    durationInHours: 1,
-    location: "Te-Aviv",
-    organizer: "Omer",
-    participantLimit: 10,
-    startTime: new Date(),
-    title: "Typescript Meetup"
-});
+	durationInHours: 1,
+	location: "Te-Aviv",
+	organizer: "Omer",
+	participantLimit: 10,
+	startTime: new Date(),
+	title: "Typescript Meetup",
+})
 
 for (let i = 0; i < 10000; i++) {
-    try {
-        Gatherings.attend(typescriptMeetupId, `attendant #${i + 1}`);
-    } catch (err) {
-        break;
-    }
+	try {
+		Gatherings.attend(typescriptMeetupId, `attendant #${i + 1}`)
+	} catch (err) {
+		break
+	}
 }
 
 Gatherings.createGathering({
-    durationInHours: 1.5,
-    location: "Ramat-Gan",
-    organizer: "Gilad",
-    participantLimit: 15,
-    startTime: new Date(),
-    title: "Fullstack Practice"
-});
+	durationInHours: 1.5,
+	location: "Ramat-Gan",
+	organizer: "Gilad",
+	participantLimit: 15,
+	startTime: new Date(),
+	title: "Fullstack Practice",
+})
 
-console.log("reached participant limit");
-console.log(Gatherings.getGatherings());
+console.log("reached participant limit")
+console.log(Gatherings.getGatherings())
 
-const gatheringListElement = document.getElementById("gathering-list");
+const gatheringListElement = document.getElementById("gathering-list")
 
-renderGatheringList();
-Gatherings.onUpdate(renderGatheringList);
+renderGatheringList()
+Gatherings.onUpdate(renderGatheringList)
 
 function renderGatheringList() {
-    if (gatheringListElement) {
-        GatheringListView.renderGatheringList(
-            Gatherings.getGatherings(),
-            gatheringListElement
-        );
-    }
+	if (gatheringListElement) {
+		GatheringListView.renderGatheringList(
+			Gatherings.getGatherings(),
+			gatheringListElement
+		)
+	}
 }
-

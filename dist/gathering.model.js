@@ -6,7 +6,7 @@ export function createGathering(gathering) {
     gatherings.push({
         ...gathering,
         id: crypto.randomUUID(),
-        attendants: []
+        attendants: [],
     });
     emitUpdate();
     return gatherings.at(-1).id;
